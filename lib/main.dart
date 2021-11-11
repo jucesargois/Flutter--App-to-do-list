@@ -12,6 +12,7 @@ class TodoListApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      title: 'App ToDoList',
       debugShowCheckedModeBanner: false,
       home: SplashView(),
     );

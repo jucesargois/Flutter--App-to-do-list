@@ -6,6 +6,9 @@ import 'package:app_to_do_list/screens/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
+//Terá a listagem de tarefas.
+//E um botão para adicionar nova tarefa.
 void main() {
   runApp(const TodoListApp());
 }
@@ -34,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode;
-    Future.delayed(Duration(seconds: 2)).then((_){
+    Future.delayed(Duration(seconds: 4)).then((_){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeView()));
     });
   }

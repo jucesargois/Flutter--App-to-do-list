@@ -1,6 +1,8 @@
 import 'package:app_to_do_list/core/colors.dart';
 import 'package:app_to_do_list/core/images.dart';
+import 'package:app_to_do_list/screens/home/widgets/pop_up_Item_body.dart';
 import 'package:flutter/material.dart';
+import 'package:popup_card/popup_card.dart';
 
 import 'widgets/card.dart';
 
@@ -15,45 +17,57 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        color: TodoListColors.primary,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: 360,
-                height: 550,
-                color: TodoListColors.primary,
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(), //desabilita efeito glow
-                  itemCount: 20,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 10.0, left: 5),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: CardWidget()),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+        body: Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: TodoListColors.primary,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  color: TodoListColors.primary,
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(), //desabilita efeito glow
+                    itemCount: 2,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10.0, left: 5),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: CardWidget()),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
+                SizedBox(
+                  height: 15,
+                ),
+              ],
+            ),
+          ),
+        ),
+        floatingActionButton: Container(
+          child: PopupItemLauncher(
+            tag: 'test',
+            child: Container(
+              width: 200,
+              height: 44,
+              child: Material(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
                 child: Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
@@ -68,46 +82,42 @@ class _HomeViewState extends State<HomeView> {
                       ],
                     ),
                   ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {},
-                      splashColor: Colors.white,
-                      child: Container(
-                        width: 200,
-                        height: 44,
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: Image.asset(
-                                    TodoListImages.addtask,
-                                    scale: 25,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "        ",
-                                ),
-                                TextSpan(
-                                  text: 'Adicionar Tarefa',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Image.asset(
+                              TodoListImages.addtask,
+                              scale: 25,
                             ),
                           ),
-                        ),
+                          TextSpan(
+                            text: "        ",
+                          ),
+                          TextSpan(
+                            text: 'Adicionar Tarefa',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
+            ),
+            popUp: PopUpItem(
+              padding: EdgeInsets.all(8),
+              color: Colors.white54,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32)),
+              elevation: 2,
+              tag: 'test',
+              child: PopUpItemBody(),
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

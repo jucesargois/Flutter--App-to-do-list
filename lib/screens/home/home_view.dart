@@ -109,11 +109,11 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             popUp: PopUpItem(
-              padding: EdgeInsets.all(8),
-              color: Colors.white54,
+              padding: EdgeInsets.all(10),
+              color: TodoListColors.primary,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32)),
-              elevation: 2,
+              elevation: 3,
               tag: 'test',
               child: PopUpItemBody(),
             ),

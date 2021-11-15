@@ -1,3 +1,4 @@
+import 'package:app_to_do_list/core/colors.dart';
 import 'package:flutter/material.dart';
 
 class PopUpItemBody extends StatelessWidget {
@@ -12,31 +13,37 @@ class PopUpItemBody extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const TextField(
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
-              hintText: 'New todo',
+              hintText: 'Título',
+              hintStyle: TextStyle(color: Colors.white),
               border: InputBorder.none,
             ),
             cursorColor: Colors.white,
           ),
           const Divider(
-            color: Colors.white,
+            color: TodoListColors.dark,
             thickness: 0.2,
           ),
           const TextField(
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
-              hintText: 'Write a note',
+              hintText:
+                  'Escreva teu textinho aqui ', //"emogi" inserir algum emoji.
+              hintStyle: TextStyle(color: Colors.white),
               border: InputBorder.none,
             ),
             cursorColor: Colors.white,
             maxLines: 6,
           ),
           const Divider(
-            color: Colors.white,
-            thickness: 0.2,
+            color: TodoListColors.dark,
+            thickness: 0.3,
           ),
           TextButton(
             onPressed: () {},
-            child: const Text('Add'),
+            child:
+                const Text('Adicionar', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

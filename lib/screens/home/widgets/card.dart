@@ -15,7 +15,9 @@ class _CardWidgetState extends State<CardWidget> {
       width: 350,
       height: 150,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
         gradient: LinearGradient(
           //begin: Alignment(0.01385041512548923, 0),
           end: Alignment(1, 1),
@@ -25,8 +27,33 @@ class _CardWidgetState extends State<CardWidget> {
           ],
         ),
       ),
-      child: Row(
-        children: [],
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Título: ',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w600),
+                )),
+            SizedBox(
+              height: 30,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Conteudo: ',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

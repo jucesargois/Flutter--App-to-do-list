@@ -16,6 +16,7 @@ class _ButtonAddTasksWidgetState extends State<ButtonAddTasksWidget> {
       width: 200,
       height: 44,
       child: Material(
+        color: Colors.transparent,
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Container(

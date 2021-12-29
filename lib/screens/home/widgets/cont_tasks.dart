@@ -20,6 +20,7 @@ class _ContTasksWidgetState extends State<ContTasksWidget> {
             child: Align(
               alignment: Alignment(-0.9, 0.0),
               child: RichText(
+                
                 text: TextSpan(
                   children: [
                     WidgetSpan(

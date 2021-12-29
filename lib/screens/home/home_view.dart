@@ -2,16 +2,7 @@ import 'package:app_to_do_list/core/colors.dart';
 import 'package:app_to_do_list/screens/home/widgets/cont_tasks.dart';
 import 'package:flutter/material.dart';
 import 'widgets/button_add_taks.dart';
-
-final TextEditingController taskcontroller = TextEditingController();
-final TextEditingController taskcontroller2 = TextEditingController();
-List<String> tasks = [];
-final formKey = GlobalKey<FormState>();
-bool value = false;
-bool isSelected = false;
-List<bool> listCheck = [];
-int continsert = 0;
-int contfinish = 0;
+import 'widgets/insert_task.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -46,52 +37,7 @@ class _HomeViewState extends State<HomeView> {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    Form(
-                      key: formKey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          width: 370,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            gradient: LinearGradient(
-                              //begin: Alignment(0.01385041512548923, 0),
-                              end: Alignment(1, 1),
-                              colors: [
-                                Color(0xFF514AAC),
-                                Color(0xFF19227C),
-                              ],
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                              child: TextFormField(
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600),
-                                controller: taskcontroller,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  hintText: 'Digite sua tarefa',
-                                  hintStyle: TextStyle(color: Colors.white),
-                                ),
-                                validator: (value) {
-                                  if (value!.isEmpty)
-                                    return 'Preencher campo com a tarefa';
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    InsertTaskWidget(),
                     SizedBox(
                       height: 10,
                     ),
@@ -113,8 +59,6 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              //componentizar
-
               ContTasksWidget(),
               Divider(
                 color: Colors.white,
@@ -165,15 +109,19 @@ class _HomeViewState extends State<HomeView> {
                                   tasks.removeAt(index);
                                   listCheck.removeAt(
                                       index); //para corrigir(quando finaliza todas as tarefas e inserir outras, checkbox continuar desmarcada)
-                                  setState(() {
-                                    continsert = tasks.length;
-                                    setState(() {
-                                      contfinish -= 1;
-                                      if (contfinish == -1) {
-                                        contfinish = 0;
-                                      }
-                                    });
-                                  });
+                                  setState(
+                                    () {
+                                      continsert = tasks.length;
+                                      setState(
+                                        () {
+                                          contfinish -= 1;
+                                          if (contfinish == -1) {
+                                            contfinish = 0;
+                                          }
+                                        },
+                                      );
+                                    },
+                                  );
                                 },
                                 child: Container(
                                   width: 300,
@@ -245,77 +193,91 @@ class _HomeViewState extends State<HomeView> {
 //dialog para editar task.
   editDialog(BuildContext context, int index) {
     return showDialog(
-        context: context,
-        builder: (context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            child: Container(
-              decoration: BoxDecoration(
-                color: TodoListColors.primary,
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-              ),
-              padding: EdgeInsets.all(20),
-              width: 420,
-              height: 280,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 170,
-                    child: TextField(
-                      
-                      maxLines: 30,
-                      controller: taskcontroller2,
-                      autofocus: true,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+              color: TodoListColors.primary,
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            ),
+            padding: EdgeInsets.all(20),
+            width: 420,
+            height: 280,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 170,
+                  child: TextField(
+                    maxLines: 30,
+                    controller: taskcontroller2,
+                    autofocus: true,
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: tasks[index],
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        borderSide:
+                            BorderSide(color: TodoListColors.light, width: 2),
                       ),
-                      decoration: InputDecoration(
-                        hintText: tasks[index],
-                        hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                          borderSide: BorderSide(color: TodoListColors.light, width: 2),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                          borderSide: BorderSide(color: TodoListColors.light, width: 2),
-                        ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        borderSide:
+                            BorderSide(color: TodoListColors.light, width: 2),
                       ),
                     ),
                   ),
-                  Container(
-                      width: 100,
-                      height: 44,
-                      // color: Colors.red,
-                      margin: EdgeInsets.only(
-                        top: 25,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                        gradient: LinearGradient(
-                          begin: Alignment(0, 1.5),
-                          end: Alignment(0.5, 0.5),
-                          colors: [
-                            const Color(0xFF19227C),
-                            const Color(0xFF514AAC),
-                          ],
-                        ),
-                      ),
-                      child: InkWell(
-                          onTap: () {
-                            _editTasks(taskcontroller.text, index);
-                          //  FocusScope.of(context).requestFocus(FocusNode());
-                            Navigator.pop(context);
-                          },
-                          child: Icon(Icons.edit,color: Colors.white,))),
-                ],
-              ),
+                ),
+                Container(
+                  width: 100,
+                  height: 44,
+                  margin: EdgeInsets.only(
+                    top: 25,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment(0, 1.5),
+                      end: Alignment(0.5, 0.5),
+                      colors: [
+                        Color(0xFF19227C),
+                        Color(0xFF514AAC),
+                      ],
+                    ),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      _editTasks(taskcontroller.text, index);
+                      //  FocusScope.of(context).requestFocus(FocusNode());
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
+
+//variaveis globais
+final TextEditingController taskcontroller = TextEditingController();
+final TextEditingController taskcontroller2 = TextEditingController();
+List<String> tasks = [];
+final formKey = GlobalKey<FormState>();
+bool value = false;
+bool isSelected = false;
+List<bool> listCheck = [];
+int continsert = 0;
+int contfinish = 0;

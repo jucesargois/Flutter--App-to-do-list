@@ -12,61 +12,65 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  Color color = TodoListColors.primary;
+  
 
   void _editTasks(String newText, int index) {
     setState(() {
       tasks[index] = taskcontroller2.text;
-    });
+    },);
   }
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    var size = mediaQuery.size;
     return Scaffold(
       body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
+        width: size.width,
+        height: size.height,
         color: TodoListColors.primary,
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                height: 50,
+                height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    InsertTaskWidget(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          setState(() {
-                            tasks.add(taskcontroller.text);
-                            listCheck.add(false);
-                            setState(() {
-                              continsert = tasks.length;
-                            });
-                          });
-                          taskcontroller.clear();
-                        }
-                      },
-                      child: ButtonAddTasksWidget(),
-                    ),
-                  ],
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      InsertTaskWidget(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            setState(
+                              () {
+                                tasks.add(taskcontroller.text);
+                                listCheck.add(false);
+                                setState(
+                                  () {
+                                    continsert = tasks.length;
+                                  },
+                                );
+                              },
+                            );
+                            taskcontroller.clear();
+                          }
+                        },
+                        child: ButtonAddTasksWidget(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               ContTasksWidget(),
-              Divider(
-                color: Colors.white,
-              ),
               Container(
+                height: 500,
                 width: double.maxFinite,
-                height: double.maxFinite,
-                color: TodoListColors.primary,
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(), //desabilita efeito glow
                   itemCount: tasks.length,
@@ -89,7 +93,6 @@ class _HomeViewState extends State<HomeView> {
                                     Radius.circular(10),
                                   ),
                                 ),
-                                // color: TodoListColors.dark,
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -103,9 +106,14 @@ class _HomeViewState extends State<HomeView> {
                               onDismissed: (direction) {
                                 tasks.removeAt(index);
                                 listCheck.removeAt(index);
-                                //para corrigir(quando finaliza todas as tarefas e inserir outras, checkbox continuar desmarcada)
+
                                 setState(
                                   () {
+                                    if (listCheck == false) {
+                                      contfinish -= 1;
+                                    } else if (listCheck.length == 0) {
+                                      contfinish = 0;
+                                    }
                                     continsert = tasks.length;
                                   },
                                 );
@@ -130,14 +138,15 @@ class _HomeViewState extends State<HomeView> {
                                     children: [
                                       ListTile(
                                         trailing: InkWell(
-                                            onTap: () {
-                                              taskcontroller2.clear();
-                                              editDialog(context, index);
-                                            },
-                                            child: Icon(
-                                              Icons.edit,
-                                              color: Colors.white,
-                                            )),
+                                          onTap: () {
+                                            taskcontroller2.clear();
+                                            editDialog(context, index);
+                                          },
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                         leading: Checkbox(
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -146,17 +155,22 @@ class _HomeViewState extends State<HomeView> {
                                           activeColor: Colors.green,
                                           value: listCheck[index],
                                           onChanged: (value) {
-                                            setState(() {
-                                              listCheck[index] =
-                                                  !listCheck[index];
-                                            });
-                                            setState(() {
-                                              if (listCheck[index] == true) {
-                                                contfinish += 1;
-                                              } else {
-                                                contfinish -= 1;
-                                              }
-                                            });
+                                            setState(
+                                              () {
+                                                listCheck[index] =
+                                                    !listCheck[index];
+                                              },
+                                            );
+                                            setState(
+                                              () {
+                                                if (listCheck[index] == true) {
+                                                  contfinish += 1;
+                                                } else if (listCheck[index] ==
+                                                    false) {
+                                                  contfinish -= 1;
+                                                }
+                                              },
+                                            );
                                           },
                                         ),
                                         title: Text(
@@ -194,7 +208,9 @@ class _HomeViewState extends State<HomeView> {
           child: Container(
             decoration: BoxDecoration(
               color: TodoListColors.primary,
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0),
+              ),
             ),
             padding: EdgeInsets.all(20),
             width: 420,
@@ -213,12 +229,16 @@ class _HomeViewState extends State<HomeView> {
                       hintText: tasks[index],
                       hintStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12.0),
+                        ),
                         borderSide:
                             BorderSide(color: TodoListColors.light, width: 2),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12.0),
+                        ),
                         borderSide:
                             BorderSide(color: TodoListColors.light, width: 2),
                       ),

@@ -71,113 +71,108 @@ class _HomeViewState extends State<HomeView> {
                   physics: BouncingScrollPhysics(), //desabilita efeito glow
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
-                      onLongPress: () {
-                        taskcontroller2.clear();
-                        editDialog(context, index);
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Dismissible(
-                                resizeDuration: Duration(milliseconds: 5),
-                                key: ValueKey(
-                                  tasks[index],
-                                ),
-                                background: Container(
-                                  decoration: BoxDecoration(
-                                    color: TodoListColors.dark,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                  // color: TodoListColors.dark,
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                      size: 23,
-                                    ),
+                    return Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Dismissible(
+                              resizeDuration: Duration(milliseconds: 5),
+                              key: ValueKey(
+                                tasks[index],
+                              ),
+                              background: Container(
+                                decoration: BoxDecoration(
+                                  color: TodoListColors.dark,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
                                   ),
                                 ),
-                                onDismissed: (direction) {
-                                  tasks.removeAt(index);
-                                  listCheck.removeAt(
-                                      index); //para corrigir(quando finaliza todas as tarefas e inserir outras, checkbox continuar desmarcada)
-                                  setState(
-                                    () {
-                                      continsert = tasks.length;
-                                      setState(
-                                        () {
-                                          contfinish -= 1;
-                                          if (contfinish == -1) {
-                                            contfinish = 0;
-                                          }
-                                        },
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: 300,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                    gradient: LinearGradient(
-                                      end: Alignment(1, 1),
-                                      colors: [
-                                        Color(0xFF514AAC),
-                                        Color(0xFF19227C),
-                                      ],
-                                    ),
+                                // color: TodoListColors.dark,
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                    size: 23,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                          leading: Checkbox(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(7),
-                                            ),
-                                            activeColor: Colors.green,
-                                            value: listCheck[index],
-                                            onChanged: (value) {
-                                              setState(() {
-                                                listCheck[index] =
-                                                    !listCheck[index];
-                                              });
-                                              setState(() {
-                                                if (listCheck[index] == true) {
-                                                  contfinish += 1;
-                                                } else {
-                                                  contfinish -= 1;
-                                                }
-                                              });
+                                ),
+                              ),
+                              onDismissed: (direction) {
+                                tasks.removeAt(index);
+                                listCheck.removeAt(index);
+                                //para corrigir(quando finaliza todas as tarefas e inserir outras, checkbox continuar desmarcada)
+                                setState(
+                                  () {
+                                    continsert = tasks.length;
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  gradient: LinearGradient(
+                                    end: Alignment(1, 1),
+                                    colors: [
+                                      Color(0xFF514AAC),
+                                      Color(0xFF19227C),
+                                    ],
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Column(
+                                    children: [
+                                      ListTile(
+                                        trailing: InkWell(
+                                            onTap: () {
+                                              taskcontroller2.clear();
+                                              editDialog(context, index);
                                             },
+                                            child: Icon(
+                                              Icons.edit,
+                                              color: Colors.white,
+                                            )),
+                                        leading: Checkbox(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
                                           ),
-                                          title: Text(
-                                            tasks[index],
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400),
-                                          ),
+                                          activeColor: Colors.green,
+                                          value: listCheck[index],
+                                          onChanged: (value) {
+                                            setState(() {
+                                              listCheck[index] =
+                                                  !listCheck[index];
+                                            });
+                                            setState(() {
+                                              if (listCheck[index] == true) {
+                                                contfinish += 1;
+                                              } else {
+                                                contfinish -= 1;
+                                              }
+                                            });
+                                          },
                                         ),
-                                      ],
-                                    ),
+                                        title: Text(
+                                          tasks[index],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -190,7 +185,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-//dialog para editar task.
   editDialog(BuildContext context, int index) {
     return showDialog(
       context: context,
@@ -257,8 +251,9 @@ class _HomeViewState extends State<HomeView> {
                       Navigator.pop(context);
                     },
                     child: Icon(
-                      Icons.edit,
+                      Icons.check,
                       color: Colors.white,
+                      size: 30,
                     ),
                   ),
                 ),

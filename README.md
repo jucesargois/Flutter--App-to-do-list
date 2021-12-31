@@ -1,4 +1,5 @@
-# app_to_do_list
+# App to do list
+ Flutter/Dart
 
 A new Flutter project.
 

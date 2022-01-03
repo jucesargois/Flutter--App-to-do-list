@@ -1,16 +1,16 @@
-# App to do list  ✅📖
+# App: To-do list  ✅📖
  Flutter/Dart
 
 
 ## Sobre
-Este projeto tem como objetivo a criação de um aplicativo para gerenciamento de tarefas, com um design simples e direto e ao mesmo tempo com um layout diferenciado e refinado. A utilização gira entorno de adicionar, editar, excluir e marcar como finalizada as tarefas podendo adicionar quantas tarefas quiser a sua lista, sendo essa lista contabilizada e atualizada de acordo com a adição e finalização de tarefas.
+Este projeto tem como objetivo a criação de um aplicativo para gerenciamento de tarefas, com um design simples e direto e ao mesmo tempo com um layout diferenciado e refinado. A utilização gira entorno de adicionar, editar, excluir e marcar como finalizada as tarefas, podendo adicionar quantas tarefas quiser a sua lista sendo essa lista contabilizada e atualizada de acordo com a adição e finalização de novas tarefas.
 
 ## Funcionalidades.
 - Incluir tarefas em uma lista.
 - Editar tarefas inseridas.
 - Excluir tarefas inseridas.
 - Inserir status de finalização para cada tarefa.
-- Contador para a quantidade de tarefas na lista e quantas foram marcadas como finalizadas.
+- Contador para a quantidade de tarefas adicionadas na lista e quantas foram marcadas como finalizadas.
 
 ## Imagens do app.
 

@@ -24,31 +24,3 @@ Este projeto tem como objetivo a criação de um aplicativo para gerenciamento d
 <img src="https://user-images.githubusercontent.com/69982713/147939248-8c812259-1d56-4cdc-a1dc-849cc3d7bcdf.png" width="250"/>,
 <img src="https://user-images.githubusercontent.com/69982713/147939364-d5360276-b402-4427-bd56-1eb2ea5b6067.png" width="250"/>,
 <img src="https://user-images.githubusercontent.com/69982713/147939558-fa8afeb8-e111-48ea-9292-f735bb8acd85.png" width="250"/>,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Obersevações.
-Todas as versões futuras desse aplicativo serão atualizadas e publicadas neste repositório:
-
-

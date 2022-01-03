@@ -1,6 +1,7 @@
 # App: To-do list  ✅📖
  Flutter/Dart
-
+  <img align="center" alt="Jucesargois-kotlin" width="15" src="https://github.com/devicons/devicon/blob/master/icons/flutter/flutter-original.svg">
+  <img align="center" alt="Jucesargois-Ts" width="15" src="https://img.icons8.com/color/48/000000/dart.png">
 
 ## Sobre
 Este projeto tem como objetivo a criação de um aplicativo para gerenciamento de tarefas, com um design simples e direto e ao mesmo tempo com um layout diferenciado e refinado. A utilização gira entorno de adicionar, editar, excluir e marcar como finalizada as tarefas, podendo adicionar quantas tarefas quiser a sua lista sendo essa lista contabilizada e atualizada de acordo com a adição e finalização de novas tarefas.

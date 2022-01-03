@@ -3,9 +3,7 @@
 
 
 ## Sobre
-
-Este projeto tem como objetivo a criação de um aplicativo para gerenciamento de tarefas, com um design simples e direto e ao mesmo tempo com um layout diferenciado e refinado. A utilização gira entorno de adicionar, editar,excluir e marcar como finalizada as tarefas podendo adicionar quantas tarefas quiser a sua lista, sendo essa lista contabilizada e atualizada de acordo com a adição e finalização de tarefas. 
-
+Este projeto tem como objetivo a criação de um aplicativo para gerenciamento de tarefas, com um design simples e direto e ao mesmo tempo com um layout diferenciado e refinado. A utilização gira entorno de adicionar, editar, excluir e marcar como finalizada as tarefas podendo adicionar quantas tarefas quiser a sua lista, sendo essa lista contabilizada e atualizada de acordo com a adição e finalização de tarefas.
 
 ## Funcionalidades.
 - Incluir tarefas em uma lista.
@@ -23,4 +21,4 @@ Este projeto tem como objetivo a criação de um aplicativo para gerenciamento d
 <img src="https://user-images.githubusercontent.com/69982713/147939187-6f147d2e-f83f-477b-bbd6-360644a9c022.png" width="250"/>,
 <img src="https://user-images.githubusercontent.com/69982713/147939248-8c812259-1d56-4cdc-a1dc-849cc3d7bcdf.png" width="250"/>,
 <img src="https://user-images.githubusercontent.com/69982713/147939364-d5360276-b402-4427-bd56-1eb2ea5b6067.png" width="250"/>,
-<img src="https://user-images.githubusercontent.com/69982713/147939558-fa8afeb8-e111-48ea-9292-f735bb8acd85.png" width="250"/>,
+<img src="https://user-images.githubusercontent.com/69982713/147939558-fa8afeb8-e111-48ea-9292-f735bb8acd85.png" width="250"/>
